@@ -1,0 +1,95 @@
+import tailer
+
+cntr = 0
+
+ford_dmg = 0.0
+chevy_dmg = 0.0
+ford_cnt = 0
+chevy_cnt = 0
+
+
+def main(args=None):
+    preload()
+#    testtwo()
+#    testthree()
+
+
+def testthree():
+    print(".....TEST_TRE.....")
+#    import tailer
+    for line in tailer.follow(open('Iliad.txt')):
+        print(line)
+
+
+def parseline(line):
+    global ford_dmg, ford_cnt, chevy_dmg, chevy_cnt, cntr
+#    print(line)
+    brick = line.split('^')
+    if brick[0] == 'Ford':
+        ford_dmg += float(brick[1])
+        ford_cnt = 1
+
+    if brick[0] == 'Chevrolet':
+        chevy_dmg += float(brick[1])
+        chevy_cnt += 1
+
+
+def printdmg():
+    global ford_dmg, ford_cnt, chevy_dmg, chevy_cnt, cntr
+    print("Ford Dmg: [%s]" % dps(ford_dmg, ford_cnt))
+    print("Chevy Dmg: [%s]" % dps(chevy_dmg, chevy_cnt))
+    print("..................................")
+    cntr = 0
+    ford_cnt = 0
+    chevy_cnt = 0
+    chevy_dmg = 0
+    ford_dmg = 0
+
+
+def preload():
+    print(".....TEST_ONE.....")
+    filepath = 'Iliad.txt'
+    global cntr
+    with open(filepath) as fp:
+        line = fp.readline()
+        cntr = 0
+#        brick = []
+        while line:
+            parseline(line)
+            line = fp.readline()
+            cntr += 1
+            if cntr == 15:
+                printdmg()
+
+    print("Ford Dmg: [%s]" % dps(ford_dmg, ford_cnt))
+    print("Chevy Dmg: [%s]" % dps(chevy_dmg, chevy_cnt))
+    print("..................................")
+    print("..................................")
+
+
+def dps(x,y):
+    try:
+        return round(x/y,2)
+    except ZeroDivisionError:
+        return 0.00
+
+def testtwo():
+    print(".....TEST_TWO.....")
+    f = open('Iliad.txt')
+    p = 0
+    while True:
+     #   print('seeking ...')
+        f.seek(p)
+        latest_data = f.read()
+        p = f.tell()
+        if latest_data:
+            print
+            print(latest_data)
+            print
+#            str(p).center(10).center(80, '=')
+
+
+if __name__ == "__main__":
+    main()
+
+
