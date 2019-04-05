@@ -1,18 +1,55 @@
-import tailer
+#import tailer
+#import mysql.connector
+import sqlite3
 
+global dbcon
+global cur
 cntr = 0
 
 ford_dmg = 0.0
 chevy_dmg = 0.0
 ford_cnt = 0
 chevy_cnt = 0
-
+action_list = ["HEAL","COMBAT"]
 
 def main(args=None):
-    preload()
+    openConnection()
+#    preload()
 #    testtwo()
 #    testthree()
 
+def openConnection():
+    global dbcon, cur
+    try:
+        dbcon = sqlite3.connect(":memory:")
+        dbcon.isolation_level = None
+        print(dbcon)
+        cur = dbcon.cursor()
+        cur.execute("create table orbus(ttime,)")
+        cur.execute("insert into test(i) values (99)")
+        cur.execute("insert into test(i) values (100)")
+        cur.execute("select sum(i) from test")
+        print(cur.fetchone()[0])
+    except Exception as dbe:
+        print("************ SOMETHING WENT TRAGICALLY WRONG (EXCEPTION) ****************")
+        print(str(dbe))
+        print("****************************************")
+    finally:
+        dbcon.close()
+
+def mysqlConnection():
+    global db
+    try:
+        db = mysql.connector.connect(user='combatengine', password='orbusdb',
+                                  host='127.0.0.1',
+                                  database='ORBUSDB')
+        print(db)
+    except Exception as dbe:
+        print("************ SOMETHING WENT TRAGICALLY WRONG (EXCEPTION) ****************")
+        print(str(dbe))
+        print("****************************************")
+    finally:
+        db.close()
 
 def testthree():
     print(".....TEST_TRE.....")
@@ -21,7 +58,12 @@ def testthree():
         print(line)
 
 
+
+
+
+
 def parseline(line):
+    global action_list
     if "You are" in line:
         return
 #    print(line)
@@ -32,6 +74,7 @@ def parseline(line):
 #        playerlog = line.split()
         try:
             i = 0
+            time = line[0:12]
             tookloc = line.index(" took")
             print("location %s" % tookloc)
             target = line[22:tookloc]
@@ -39,35 +82,29 @@ def parseline(line):
             print(line[tookloc])
             playerlog = line[tookloc:].split()
             print(playerlog)
-            dmg_heelz = int( playerlog[1])
-            dmg_heelz_type = 0
-            if dmg_heelz > 0:
-                print("***ATTACKING***")
-                dmg_heelz_type = 1
+            dmg_heelz = float( playerlog[1])
+            dmg_heelz_type = 1
+            if dmg_heelz < 0:
+                print("***HEALING***")
+                dmg_heelz_type = 0
             else:
                 print("***HEALING***")
-
-
-
-            time
-            action
-            amount
-            source
-            target
-            critical
-
-
+            TIME ACTION ACTION_KEY AMOUNT SOURCE TARGET CRITICAL ACTUAL
+            print(".............")
+            print("TIME: %s" % time)
+            print("ACTION: %s" % action_list[dmg_heelz_type])
+            print("ACTION_KEY: %s" % dmg_heelz_type)
+            print("AMOUNT: %s" % dmg_heelz)
+            print("SOURCE: %s" % playerlog[4])
+            print("TARGET: %s" % target)
+            print("CRITICAL: %s" % "NOT_IMPLEMENTED")
+            print("ACTUAL: %s" % line)
+            print(".............")
 
 #            print(" >> target[%s] damage[%s] player[%s]" % (target,dmg_heelz,playerlog[3],))
 #            while i < len(playerlog):
 #                print("%s: %s" % (i, playerlog[i]))
- #               i += 1
-
-
-
-
-
-
+#                i += 1
 
         except Exception as e:
             print("************ EXCEPTION ****************")
@@ -94,9 +131,6 @@ def parseline(line):
 
 #        exit(0)
 #        print(" >> target[%s] damage[%s] player[%s] [%s]" % (parsedlog[2],parsedlog[4],parsedlog[7],line))
-
-
-
 
 
 def XparselineX(line):

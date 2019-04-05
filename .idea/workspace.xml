@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="715ec157-2b68-4f48-8ed0-0b0e21332024" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/createschema.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combatlogengine.py" beforeDir="false" afterPath="$PROJECT_DIR$/combatlogengine.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,12 +17,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/combatlogengine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6">
-              <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+            <state relative-caret-position="68">
+              <caret line="91" column="13" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="71" />
               <folding>
+                <element signature="e#315#769#0" />
                 <element signature="e#622#897#0" />
                 <element signature="e#1592#1863#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/combat.out">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7034">
+              <caret line="11373" column="12" selection-start-line="11373" selection-end-line="11373" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -43,6 +51,7 @@
       <find>dmg</find>
       <find>cnt</find>
       <find>Iliad.txt</find>
+      <find>20:48:05:883</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -55,6 +64,7 @@
         <option value="$PROJECT_DIR$/dmgout" />
         <option value="$PROJECT_DIR$/combat.log" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/createschema.py" />
         <option value="$PROJECT_DIR$/combatlogengine.py" />
       </list>
     </option>
@@ -171,12 +181,12 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13541667" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49789914" visible="true" weight="0.13541667" />
+      <window_info id="Structure" order="1" sideWeight="0.5021008" side_tool="true" visible="true" weight="0.13541667" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.20737328" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26881722" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -195,7 +205,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/combatlogengine.py</url>
-          <line>152</line>
+          <line>186</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -233,11 +243,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/createschema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/combat.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7034">
+          <caret line="11373" column="12" selection-start-line="11373" selection-end-line="11373" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/combatlogengine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+        <state relative-caret-position="68">
+          <caret line="91" column="13" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="71" />
           <folding>
+            <element signature="e#315#769#0" />
             <element signature="e#622#897#0" />
             <element signature="e#1592#1863#0" />
           </folding>
