@@ -15,6 +15,11 @@ git checkout develop
 
 you're ready to go, see the README.md under develop for instructions on using the application
 
+You will need to pull the HSQLDB from Sourceforge and start it
+
+https://sourceforge.net/projects/hsqldb/files/hsqldb/hsqldb_2_4/hsqldb-2.4.1.zip/download
+
+https://dev.mysql.com/downloads/mysql/
 
 
 

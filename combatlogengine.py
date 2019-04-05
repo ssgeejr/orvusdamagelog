@@ -49,11 +49,19 @@ def parseline(line):
 
 
 
+            time
+            action
+            amount
+            source
+            target
+            critical
+
+
 
 #            print(" >> target[%s] damage[%s] player[%s]" % (target,dmg_heelz,playerlog[3],))
-            while i < len(playerlog):
-                print("%s: %s" % (i, playerlog[i]))
-                i += 1
+#            while i < len(playerlog):
+#                print("%s: %s" % (i, playerlog[i]))
+ #               i += 1
 
 
 
@@ -117,7 +125,7 @@ def printdmg():
 
 def preload():
     print(".....TEST_ONE.....")
-    filepath = 'combat.log'
+    filepath = 'combat.out'
     global cntr
     with open(filepath) as fp:
         line = fp.readline()
