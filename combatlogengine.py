@@ -1,6 +1,7 @@
 #import tailer
 #import mysql.connector
 import sqlite3
+import os
 
 global dbcon
 global cur
@@ -23,13 +24,57 @@ def results():
     # cur.execute("select time,action,amount,source,target from orbus where target = 'Rushed Stafrusher(18320)' and action = 'COMBAT'")
     # cur.execute("select sum(amount),source,target from orbus where target = 'Rushed Stafrusher(18320)' and action = 'COMBAT' group by source");
 #    cur.execute("select sum(amount) as totaldamage,source,target from orbus where action = 'COMBAT' group by source order by totaldamage desc");
-    cur.execute("select sum(amount) as totaldamage,source,target from orbus where action = 'HEAL' group by source, target order by totaldamage desc");
 
-    # zz = 0
+
+    cur.execute("select max(time) as mx, min(time) as mn from orbus where target like 'Lich King%' and action = 'COMBAT' and time like '14:%' ");
+    # cur.execute("select Cast(( JulianDay(max(time)) - JulianDay(min(time)) ) * 24 * 60 * 60 As Integer)from orbus where target like 'Lich King%' and action = 'COMBAT'");
+    for row in cur:
+        cmbseconds = (toseconds(row[0]) - toseconds(row[1]))
+        print("Combat Seconds: %s" % cmbseconds)
+
+
+
+    print("****RAW DAMAGE****")
+    cur.execute("select time,amount,target,source from orbus where target like 'Lich King%' and action = 'COMBAT'  and time like '14:%' order by time");
+    for row in cur:
+        print(row)
+
+
+    print("****TOTAL DAMAGE****")
+    cur.execute("select sum(amount) as totaldamage,source,target from orbus where target like 'Lich King%' and action = 'COMBAT'  and time like '14:%' group by source,target order by target");
+    for row in cur:
+        print("Raw Damage [%s], DPS [%s], Player [%s]" % (row[0], dps(row[0],cmbseconds),row[1]))
+
+
+
+
+
+    return
+
+    print("*****COMBAT*****")
+    cur.execute("select sum(amount) as totaldamage,source,target from orbus where action = 'COMBAT' group by source,target order by target");
+    for row in cur:
+        print(row)
+
+    print("*****HEALING*****")
+    cur.execute("select sum(amount) as totaldamage,source,target from orbus where action = 'HEAL' group by source, target order by totaldamage desc");
     for row in cur:
         print(row)
         # zz += 1
         # if zz > 10: exit(0)
+
+def dps(x,y):
+    try:
+        return round(x/y,2)
+    except ZeroDivisionError:
+        return 0.00
+def toseconds(time_str):
+    # print("TIME_STR" + time_str)
+    time_str = time_str[0:8]
+    print(time_str)
+    h, m, s = time_str.split(':')
+    return int(h) * 3600 + int(m) * 60 + int(s)
+
 
 def openConnection():
     global dbcon, cur
@@ -134,8 +179,9 @@ def parseline(line):
 
 
 def preload():
-    print(".....preload.....")
-    filepath = 'combat.out'
+    # print(".....preload.....")
+    filepath = ("%s\AppData\LocalLow\Orbus Online, LLC\OrbusVR\combat.log" % os.environ['USERPROFILE'])
+    print(filepath)
     global cntr
     with open(filepath) as fp:
         line = fp.readline()
